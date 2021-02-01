@@ -24,6 +24,10 @@ void adjust(void)
 
 %%
 
+%x COMMENT STRING
+
+
+
 /*Ignore these*/
 " "	 		{adjust(); continue;}
 \t	 			{adjust(); continue;}
@@ -80,12 +84,33 @@ funtion    	{adjust(); return FUNCTION;}
 end    		{adjust(); return END;}
 
 
-
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
 [a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.ival=atoi(yytext); return ID;}
+
+
+\"			{adjust(); /*entrar no estado de string*/;return STRINGSTART;}
+
+<STR>{
+    \"			{adjust(); /*sair do estado de string*/; return STRINGEND;}
+    \\	 		{adjust(); /*entrar no estado de ignore?*/; return IGNORESTART;}
+    "\n"	 	{adjust(); return NEWLINE;}
+    "\t"	 	{adjust(); return TAB;}
+    "\^c"	 	{adjust(); return CTRLC;}
+    "\ddd"	 	{adjust(); return DDD;}
+    "\""	 	{adjust(); return QUOTES;}
+    "\\"	 	{adjust(); return BACKSLASH;}
+}
+
+/*comentario*/
+"/*"	 	{adjust(); return COMMENTSTART;}
+
+<COMMENT>{
+    \n	 		{adjust(); EM_newline(); continue;}
+    "*/"	 	{adjust(); return COMMENTEND;}
+    <<EOF>>     {adjust(); EM_error(EM_tokPos,"unended comment");}
+}
+
 
 /*Illegal Token*/
 .	 		{adjust(); EM_error(EM_tokPos,"illegal token");}
 
-
-//falta string e estados
