@@ -83,6 +83,7 @@ var    		{adjust(); return VAR;}
 funtion    	{adjust(); return FUNCTION;}
 end    		{adjust(); return END;}
 
+goto    		{adjust(); return GOTO;}
 
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
 [a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.ival=atoi(yytext); return ID;}
