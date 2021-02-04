@@ -1,32 +1,31 @@
 %{
+#include <limits.h>
 #include <string.h>
 #include "util.h"
-#include "tokens.h"
+#include "tiger.tab.h"
 #include "errormsg.h"
 
-int charPos=1;
+#define STR_MAX_SIZE 16384
+#define YY_NO_UNPUT
 
-int yywrap(void)
-{
- charPos=1;
- return 1;
-}
+int depth = 0;
+int curr_line = 1;
+int curr_col = 0
 
+char str_buffer[STR_MAX_SIZE];
+char* buffer_ptr;
 
-void adjust(void)
-{
- EM_tokPos=charPos;
- charPos+=yyleng;
-}
+void adjust(void);
+
+extern YYLTYPE yylloc;
 
 %}
 
+%x IN_COMMENT 
+%x IN_STRING
+
 
 %%
-
-%x COMMENT STRING
-
-
 
 /*Ignore these*/
 " "	 		{adjust(); continue;}
@@ -66,52 +65,91 @@ void adjust(void)
 "|"	 		{adjust(); return OR;}
 
 /*Reserved Words*/
-if  	 		{adjust(); return IF;}
-then  	 		{adjust(); return THEN;}
-else  	 		{adjust(); return ELSE;}
-while  	 	{adjust(); return WHILE;}
-do  	 		{adjust(); return DO;}
-for  	 		{adjust(); return FOR;}
-to  	 		{adjust(); return TO;}
-break  	 	{adjust(); return BREAK;}
-let  	 		{adjust(); return LET;}
-nil      		{adjust(); return NIL;}
-type     		{adjust(); return TYPE;}
-array    		{adjust(); return ARRAY;}
-of    			{adjust(); return OF;}
-var    		{adjust(); return VAR;}
-funtion    	{adjust(); return FUNCTION;}
-end    		{adjust(); return END;}
+"if"  	 			{adjust(); return IF;}
+"then"  	 		{adjust(); return THEN;}
+"else"  	 		{adjust(); return ELSE;}
+"while"  	 	    {adjust(); return WHILE;}
+"do"  	 			{adjust(); return DO;}
+"for"  	 			{adjust(); return FOR;}
+"to"  	 			{adjust(); return TO;}
+"break"  	 	    {adjust(); return BREAK;}
+"let"  	 			{adjust(); return LET;}
+"nil"      			{adjust(); return NIL;}
+"type"     			{adjust(); return TYPE;}
+"array"    			{adjust(); return ARRAY;}
+"of"    			{adjust(); return OF;}
+"var"    		    {adjust(); return VAR;}
+"funtion"    	    {adjust(); return FUNCTION;}
+"end"    		    {adjust(); return END;}
 
-goto    		{adjust(); return GOTO;}
+"goto"    			{adjust(); return GOTO;}
 
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
 [a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.ival=atoi(yytext); return ID;}
 
+/*string*/
+\"			{adjust(); begin(IN_STRING); buffer_ptr = str_buffer;}
 
-\"			{adjust(); /*entrar no estado de string*/;return STRINGSTART;}
+<IN_STRING> {
+	\"			{
+					adjust(); 
+					begin(INITIAL); 
+					
+					*buffer_ptr = '\0';
+					char *p;
+					p = malloc((strlen(str_buffer)+1)*sizeof(char));			// essa parte peguei do professor...
+					strcpy(p, str_buffer);
+					yylval.u_string = p;
 
-<STR>{
-    \"			{adjust(); /*sair do estado de string*/; return STRINGEND;}
-    \\	 		{adjust(); /*entrar no estado de ignore?*/; return IGNORESTART;}
-    "\n"	 	{adjust(); return NEWLINE;}
-    "\t"	 	{adjust(); return TAB;}
-    "\^c"	 	{adjust(); return CTRLC;}
-    "\ddd"	 	{adjust(); return DDD;}
-    "\""	 	{adjust(); return QUOTES;}
-    "\\"	 	{adjust(); return BACKSLASH;}
+					return STRLIT;
+				}
+				
+	\n	 		{adjust(); yyerror("unterminated string constant");}
+	<<EOF>>	 	{adjust(); yyerror("unterminated string constant");}
+	\\n	 		{*buffer_ptr++ = '\n';}
+	\\t	 		{*buffer_ptr++ = '\t';}
+	\\^[a-z]	{
+					if(strchr("abcdefghijklmnopqrstuvwxyz", yytext[2])){
+						*buffer_ptr++ = yytext[2] - 'a' + 1;
+					} else {
+						yyerror("illegal escape sequence");
+					}
+				}
+	\\\"			{*buffer_ptr++ = '"';}			
+	\\\\	 		{*buffer_ptr++ = '\\';}
+	\\[0-9]{3}		{*buffer_ptr++ = (char)atoi(&yytext[1]);}
+	\\[\n\t ]+\\    {/*nothing*/}				
+	\\.				{adjust(); yyerror("illegal escape sequence");}
+	[^\\\n\"]+		{
+						char *p = yytext;
+						while (*p)
+							*buffer_ptr++ = *p++;
+					}
 }
 
 /*comentario*/
-"/*"	 	{adjust(); return COMMENTSTART;}
+"/*"	 	{adjust(); begin(IN_COMMENT); depth = 1;}
 
-<COMMENT>{
-    \n	 		{adjust(); EM_newline(); continue;}
-    "*/"	 	{adjust(); return COMMENTEND;}
-    <<EOF>>     {adjust(); EM_error(EM_tokPos,"unended comment");}
+<IN_COMMENT>{
+	"/*"	 	{adjust(); depth++;}
+	"*/"	 	{adjust(); if (--depth == 0) begin(INITIAL);}
+	\n	 		{adjust();}
+	<<EOF>>     {adjust(); EM_error(EM_tokPos,"unterminated comment");}
+	.	 		{adjust();}
 }
 
 
 /*Illegal Token*/
 .	 		{adjust(); EM_error(EM_tokPos,"illegal token");}
+
+%%
+int yywrap(void) {
+ charPos=1;
+ return 1;
+}
+
+void adjust(void) {
+  EM_tokPos=charPos;
+  charPos+=yyleng;
+ }
 
