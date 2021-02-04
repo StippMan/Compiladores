@@ -1,8 +1,7 @@
 %{
-#include <limits.h>
 #include <string.h>
 #include "util.h"
-#include "tiger.tab.h"
+#include "tokens.h"
 #include "errormsg.h"
 
 #define STR_MAX_SIZE 16384
@@ -10,14 +9,15 @@
 
 int depth = 0;
 int curr_line = 1;
-int curr_col = 0
+int curr_col = 0;
+int char_pos = 1;
 
 char str_buffer[STR_MAX_SIZE];
 char* buffer_ptr;
 
 void adjust(void);
 
-extern YYLTYPE yylloc;
+// extern YYLTYPE yylloc;
 
 %}
 
@@ -27,13 +27,13 @@ extern YYLTYPE yylloc;
 
 %%
 
-/*Ignore these*/
+ /*Ignore these*/
 " "	 		{adjust(); continue;}
 \t	 			{adjust(); continue;}
 \r	 			{adjust(); continue;}
 \n	 			{adjust(); EM_newline(); continue;}
 
-/*Symbols*/
+ /*Symbols*/
 ":"      		{adjust(); return COLON;}
 ";"      		{adjust(); return SEMICOLON;}
 "("      		{adjust(); return LPAREN;}
@@ -44,27 +44,27 @@ extern YYLTYPE yylloc;
 "}"      		{adjust(); return RBRACE;}
 ":="			{adjust(); return ASSIGN;}
 ","	 		{adjust(); return COMMA;}
-"."	 		{adjust(); return PERIOD;}
+"."	 		{adjust(); return DOT;}
 
-/*Arithmetic*/
+ /*Arithmetic*/
 "+"	 		{adjust(); return PLUS;}
 "-"	 		{adjust(); return MINUS;}
 "*"	 		{adjust(); return TIMES;}
 "/"	 		{adjust(); return DIVIDE;}
 
-/*Comparison*/
+ /*Comparison*/
 "="	 		{adjust(); return EQ;}
 "<"	 		{adjust(); return LT;}
 ">"	 		{adjust(); return GT;}
-"<="			{adjust(); return LEQ;}
-">="			{adjust(); return GEQ;}
+"<="			{adjust(); return LTEQ;}
+">="			{adjust(); return GTEQ;}
 "<>"			{adjust(); return NEQ;}
 
-/*Boolean Operators*/
+ /*Boolean Operators*/
 "&"	 		{adjust(); return AND;}
 "|"	 		{adjust(); return OR;}
 
-/*Reserved Words*/
+ /*Reserved Words*/
 "if"  	 			{adjust(); return IF;}
 "then"  	 		{adjust(); return THEN;}
 "else"  	 		{adjust(); return ELSE;}
@@ -87,13 +87,13 @@ extern YYLTYPE yylloc;
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
 [a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.ival=atoi(yytext); return ID;}
 
-/*string*/
-\"			{adjust(); begin(IN_STRING); buffer_ptr = str_buffer;}
+ /*string*/
+\"			{adjust(); BEGIN(IN_STRING); buffer_ptr = str_buffer;}
 
 <IN_STRING>{
 	\"			{
 					adjust(); 
-					begin(INITIAL); 
+					BEGIN(INITIAL); 
 					
 					*buffer_ptr = '\0';
 					char *p;
@@ -104,22 +104,22 @@ extern YYLTYPE yylloc;
 					return STRLIT;
 				}
 				
-	\n	 		{adjust(); yyerror("unterminated string constant");}
-	<<EOF>>	 	{adjust(); yyerror("unterminated string constant");}
+	\n	 		{adjust(); EM_error(EM_tokPos,"unterminated string constant");;}
+	<<EOF>>	 	{adjust(); EM_error(EM_tokPos,"unterminated string constant");;}
 	\\n	 		{*buffer_ptr++ = '\n';}
 	\\t	 		{*buffer_ptr++ = '\t';}
 	\\^[a-z]	{
 					if(strchr("abcdefghijklmnopqrstuvwxyz", yytext[2])){
 						*buffer_ptr++ = yytext[2] - 'a' + 1;
 					} else {
-						yyerror("illegal escape sequence");
+						EM_error(EM_tokPos,"illegal escape sequence");
 					}
 				}
 	\\\"			{*buffer_ptr++ = '"';}			
 	\\\\	 		{*buffer_ptr++ = '\\';}
 	\\[0-9]{3}		{*buffer_ptr++ = (char)atoi(&yytext[1]);}
 	\\[\n\t ]+\\    {/*nothing*/}				
-	\\.				{adjust(); yyerror("illegal escape sequence");}
+	\\.				{adjust(); EM_error(EM_tokPos,"illegal escape sequence");}
 	[^\\\n\"]+		{
 						char *p = yytext;
 						while (*p)
@@ -127,29 +127,29 @@ extern YYLTYPE yylloc;
 					}
 }
 
-/*comentario*/
-"/*"	 	{adjust(); begin(IN_COMMENT); depth = 1;}
+ /*comentario*/
+"/*"	 	{adjust(); BEGIN(IN_COMMENT); depth = 1;}
 
 <IN_COMMENT>{
 	"/*"	 	{adjust(); depth++;}
-	"*/"	 	{adjust(); if (--depth == 0) begin(INITIAL);}
+	"*/"	 	{adjust(); if (--depth == 0) BEGIN(INITIAL);}
 	\n	 		{adjust();}
 	<<EOF>>     {adjust(); EM_error(EM_tokPos,"unterminated comment");}
 	.	 		{adjust();}
 }
 
 
-/*Illegal Token*/
+ /*Illegal Token*/
 .	 		{adjust(); EM_error(EM_tokPos,"illegal token");}
 
 %%
+
 int yywrap(void) {
- charPos=1;
+ char_pos=1;
  return 1;
 }
 
 void adjust(void) {
-  EM_tokPos=charPos;
-  charPos+=yyleng;
+  EM_tokPos=char_pos;
+  char_pos+=yyleng;
  }
-
