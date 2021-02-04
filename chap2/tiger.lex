@@ -90,7 +90,7 @@ extern YYLTYPE yylloc;
 /*string*/
 \"			{adjust(); begin(IN_STRING); buffer_ptr = str_buffer;}
 
-<IN_STRING> {
+<IN_STRING>{
 	\"			{
 					adjust(); 
 					begin(INITIAL); 
