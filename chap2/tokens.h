@@ -48,4 +48,7 @@ extern YYSTYPE yylval;
 # define FUNCTION 297
 # define VAR 298
 # define TYPE 299
-
+# define LTEQ 300
+# define GTEQ 301
+# define GOTO 302
+# define STRLIT 303

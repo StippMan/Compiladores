@@ -1083,7 +1083,7 @@ YY_RULE_SETUP
 					char *p;
 					p = malloc((strlen(str_buffer)+1)*sizeof(char));			// essa parte peguei do professor...
 					strcpy(p, str_buffer);
-					yylval.sval = p;
+					yylval.sval = p; 						// nao sei se o sval é o correto aqui
 
 					return STRLIT;
 				}
