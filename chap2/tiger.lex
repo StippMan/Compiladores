@@ -85,7 +85,7 @@ void adjust(void);
 "goto"    			{adjust(); return GOTO;}
 
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
-[a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.ival=atoi(yytext); return ID;}
+[a-zA-Z][a-zA-Z0-9_]+	 	{adjust(); yylval.sval=yytext; return ID;}
 
  /*string*/
 \"			{adjust(); BEGIN(IN_STRING); buffer_ptr = str_buffer;}
