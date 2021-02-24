@@ -1,0 +1,53 @@
+       LET   91
+        ID   98 function
+        ID  107 do_nothing1
+    LPAREN  118
+        ID  119 a
+     COLON  120
+        ID  122 int
+     COMMA  125
+        ID  127 b
+     COLON  128
+        ID  130 string
+    RPAREN  136
+     COLON  137
+        ID  138 int
+        EQ  141
+    LPAREN  146
+        ID  147 do_nothing2
+    LPAREN  158
+        ID  159 a
+      PLUS  160
+       INT  161 1
+    RPAREN  162
+ SEMICOLON  163
+       INT  164 0
+    RPAREN  165
+        ID  170 function
+        ID  179 do_nothing2
+    LPAREN  190
+        ID  191 d
+     COLON  192
+        ID  194 int
+    RPAREN  197
+     COLON  198
+        ID  199 string
+        EQ  206
+    LPAREN  211
+        ID  212 do_nothing1
+    LPAREN  223
+        ID  224 a
+     COMMA  225
+ BAD_TOKEN  228
+    RPAREN  229
+ SEMICOLON  230
+ BAD_TOKEN  232
+    RPAREN  233
+        ID  238 in
+        ID  243 do_nothing1
+    LPAREN  254
+       INT  255 0
+     COMMA  256
+ BAD_TOKEN  259
+    RPAREN  260
+       END  263

@@ -1,0 +1,16 @@
+       LET  223
+      TYPE  229
+        ID  234 a
+        EQ  236
+        ID  238 int
+       VAR  244
+        ID  248 b
+    ASSIGN  250
+       INT  253 4
+      TYPE  257
+        ID  262 a
+        EQ  264
+        ID  266 string
+        ID  274 in
+       INT  279 0
+       END  282

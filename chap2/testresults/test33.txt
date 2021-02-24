@@ -1,0 +1,10 @@
+       LET   29
+       VAR   35
+        ID   39 a
+    ASSIGN   40
+        ID   43 rectype
+    LBRACE   51
+    RBRACE   52
+        ID   55 in
+       INT   60 0
+       END   63

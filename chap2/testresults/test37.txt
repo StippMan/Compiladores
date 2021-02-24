@@ -1,0 +1,12 @@
+       LET  142
+       VAR  148
+        ID  152 a
+    ASSIGN  154
+       INT  157 0
+       VAR  161
+        ID  165 a
+    ASSIGN  167
+ BAD_TOKEN  171
+        ID  174 in
+       INT  179 0
+       END  182

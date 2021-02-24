@@ -1,0 +1,22 @@
+       LET   46
+        ID   52 function
+        ID   61 g
+    LPAREN   63
+        ID   64 a
+     COLON   65
+        ID   66 int
+     COMMA   70
+        ID   72 b
+     COLON   73
+        ID   74 string
+    RPAREN   80
+     COLON   81
+        ID   82 int
+        EQ   86
+        ID   88 a
+        ID   91 in
+        ID   96 g
+    LPAREN   97
+ BAD_TOKEN   99
+    RPAREN  100
+       END  103

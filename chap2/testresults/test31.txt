@@ -1,0 +1,10 @@
+       LET   54
+       VAR   61
+        ID   65 a
+     COLON   66
+        ID   67 int
+    ASSIGN   71
+ BAD_TOKEN   75
+        ID   78 in
+        ID   83 a
+       END   86

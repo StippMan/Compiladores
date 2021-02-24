@@ -1,0 +1,20 @@
+       LET   81
+      TYPE   89
+        ID   94 a
+        EQ   95
+        ID   96 c
+      TYPE   99
+        ID  104 b
+        EQ  105
+        ID  106 a
+      TYPE  109
+        ID  114 c
+        EQ  115
+        ID  116 d
+      TYPE  119
+        ID  124 d
+        EQ  125
+        ID  126 a
+        ID  131 in
+ BAD_TOKEN  137
+       END  140

@@ -1,0 +1,22 @@
+       LET   28
+       VAR   34
+        ID   38 a
+    ASSIGN   39
+       INT   41 0
+        ID   47 function
+        ID   56 g
+    LPAREN   57
+        ID   58 a
+     COLON   59
+        ID   60 int
+    RPAREN   63
+     COLON   64
+        ID   65 int
+        EQ   69
+        ID   71 a
+        ID   75 in
+        ID   80 g
+    LPAREN   81
+       INT   82 2
+    RPAREN   83
+       END   86

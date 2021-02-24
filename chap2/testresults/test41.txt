@@ -1,0 +1,15 @@
+       LET   32
+      TYPE   38
+        ID   43 a
+        EQ   45
+        ID   47 int
+        ID   52 in
+       LET   57
+      TYPE   64
+        ID   69 a
+        EQ   71
+        ID   73 string
+        ID   82 in
+       INT   88 0
+       END   92
+       END   97

@@ -1,0 +1,200 @@
+       LET   29
+      TYPE   37
+        ID   42 arrtype1
+        EQ   51
+     ARRAY   53
+        OF   59
+        ID   62 int
+      TYPE   67
+        ID   72 rectype1
+        EQ   81
+    LBRACE   83
+        ID   84 name
+     COLON   88
+        ID   89 string
+     COMMA   95
+        ID   97 address
+     COLON  104
+        ID  105 string
+     COMMA  111
+        ID  113 id
+     COLON  115
+        ID  117 int
+     COMMA  121
+        ID  123 age
+     COLON  126
+        ID  128 int
+    RBRACE  131
+      TYPE  134
+        ID  139 arrtype2
+        EQ  148
+     ARRAY  150
+        OF  156
+        ID  159 rectype1
+      TYPE  169
+        ID  174 rectype2
+        EQ  183
+    LBRACE  185
+        ID  186 name
+     COLON  191
+        ID  193 string
+     COMMA  199
+        ID  201 dates
+     COLON  206
+        ID  208 arrtype1
+    RBRACE  216
+      TYPE  221
+        ID  226 arrtype3
+        EQ  235
+     ARRAY  237
+        OF  243
+        ID  246 string
+       VAR  256
+        ID  260 arr1
+    ASSIGN  265
+        ID  268 arrtype1
+    LBRACK  277
+       INT  278 10
+    RBRACK  280
+        OF  282
+       INT  285 0
+       VAR  288
+        ID  292 arr2
+    ASSIGN  298
+        ID  301 arrtype2
+    LBRACK  310
+       INT  311 5
+    RBRACK  312
+        OF  314
+        ID  317 rectype1
+    LBRACE  326
+        ID  327 name
+        EQ  331
+ BAD_TOKEN  333
+     COMMA  334
+        ID  336 address
+        EQ  343
+ BAD_TOKEN  345
+     COMMA  346
+        ID  348 id
+        EQ  350
+       INT  351 0
+     COMMA  352
+        ID  354 age
+        EQ  357
+       INT  358 0
+    RBRACE  359
+       VAR  362
+        ID  366 arr3
+     COLON  370
+        ID  371 arrtype3
+    ASSIGN  380
+        ID  383 arrtype3
+    LBRACK  392
+       INT  393 100
+    RBRACK  396
+        OF  398
+ BAD_TOKEN  402
+       VAR  407
+        ID  411 rec1
+    ASSIGN  416
+        ID  419 rectype1
+    LBRACE  428
+        ID  429 name
+        EQ  433
+ BAD_TOKEN  435
+     COMMA  436
+        ID  438 address
+        EQ  445
+ BAD_TOKEN  447
+     COMMA  448
+        ID  450 id
+        EQ  452
+       INT  453 2432
+     COMMA  458
+        ID  460 age
+        EQ  463
+       INT  464 44
+    RBRACE  466
+       VAR  469
+        ID  473 rec2
+    ASSIGN  478
+        ID  481 rectype2
+    LBRACE  490
+        ID  491 name
+        EQ  495
+ BAD_TOKEN  497
+     COMMA  498
+        ID  500 dates
+        EQ  505
+        ID  507 arrtype1
+    LBRACK  516
+       INT  517 3
+    RBRACK  518
+        OF  520
+       INT  523 1900
+    RBRACE  527
+        ID  532 in
+        ID  538 arr1
+    LBRACK  542
+       INT  543 0
+    RBRACK  544
+    ASSIGN  546
+       INT  549 1
+ SEMICOLON  550
+        ID  554 arr1
+    LBRACK  558
+       INT  559 9
+    RBRACK  560
+    ASSIGN  562
+       INT  565 3
+ SEMICOLON  566
+        ID  569 arr2
+    LBRACK  573
+       INT  574 3
+    RBRACK  575
+       DOT  576
+        ID  577 name
+    ASSIGN  582
+ BAD_TOKEN  586
+ SEMICOLON  587
+        ID  590 arr2
+    LBRACK  594
+       INT  595 1
+    RBRACK  596
+       DOT  597
+        ID  598 age
+    ASSIGN  602
+       INT  605 23
+ SEMICOLON  607
+        ID  610 arr3
+    LBRACK  614
+       INT  615 34
+    RBRACK  617
+    ASSIGN  619
+ BAD_TOKEN  623
+ SEMICOLON  624
+        ID  629 rec1
+       DOT  633
+        ID  634 name
+    ASSIGN  639
+ BAD_TOKEN  643
+ SEMICOLON  644
+        ID  647 rec2
+       DOT  651
+        ID  652 dates
+    LBRACK  657
+       INT  658 0
+    RBRACK  659
+    ASSIGN  661
+       INT  664 2323
+ SEMICOLON  668
+        ID  671 rec2
+       DOT  675
+        ID  676 dates
+    LBRACK  681
+       INT  682 2
+    RBRACK  683
+    ASSIGN  685
+       INT  688 2323
+       END  696

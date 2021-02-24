@@ -1,0 +1,19 @@
+       LET   57
+      TYPE   63
+        ID   68 arrayty
+        EQ   76
+     ARRAY   78
+        OF   84
+        ID   87 int
+       VAR   95
+        ID   99 a
+    ASSIGN  101
+        ID  104 arrayty
+    LBRACK  112
+       INT  113 10
+    RBRACK  115
+        OF  117
+ BAD_TOKEN  121
+        ID  124 in
+       INT  129 0
+       END  132

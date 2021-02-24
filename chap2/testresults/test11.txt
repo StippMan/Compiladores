@@ -1,0 +1,12 @@
+       FOR   79
+        ID   83 i
+    ASSIGN   84
+       INT   86 10
+        TO   89
+ BAD_TOKEN   93
+        DO   95
+        ID  101 i
+    ASSIGN  103
+        ID  106 i
+     MINUS  108
+       INT  110 1

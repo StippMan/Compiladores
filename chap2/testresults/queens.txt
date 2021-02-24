@@ -1,0 +1,237 @@
+       LET   50
+       VAR   59
+        ID   63 N
+    ASSIGN   65
+       INT   68 8
+      TYPE   77
+        ID   82 intArray
+        EQ   91
+     ARRAY   93
+        OF   99
+        ID  102 int
+       VAR  113
+        ID  117 row
+    ASSIGN  121
+        ID  124 intArray
+    LBRACK  133
+        ID  135 N
+    RBRACK  137
+        OF  139
+       INT  142 0
+       VAR  149
+        ID  153 col
+    ASSIGN  157
+        ID  160 intArray
+    LBRACK  169
+        ID  171 N
+    RBRACK  173
+        OF  175
+       INT  178 0
+       VAR  185
+        ID  189 diag1
+    ASSIGN  195
+        ID  198 intArray
+    LBRACK  207
+        ID  208 N
+      PLUS  209
+        ID  210 N
+     MINUS  211
+       INT  212 1
+    RBRACK  213
+        OF  215
+       INT  218 0
+       VAR  225
+        ID  229 diag2
+    ASSIGN  235
+        ID  238 intArray
+    LBRACK  247
+        ID  248 N
+      PLUS  249
+        ID  250 N
+     MINUS  251
+       INT  252 1
+    RBRACK  253
+        OF  255
+       INT  258 0
+        ID  267 function
+        ID  276 printboard
+    LPAREN  286
+    RPAREN  287
+        EQ  289
+    LPAREN  299
+       FOR  300
+        ID  304 i
+    ASSIGN  306
+       INT  309 0
+        TO  311
+        ID  314 N
+     MINUS  315
+       INT  316 1
+        DO  321
+    LPAREN  324
+       FOR  325
+        ID  329 j
+    ASSIGN  331
+       INT  334 0
+        TO  336
+        ID  339 N
+     MINUS  340
+       INT  341 1
+        DO  352
+        ID  355 print
+    LPAREN  360
+        IF  361
+        ID  364 col
+    LBRACK  367
+        ID  368 i
+    RBRACK  369
+        EQ  370
+        ID  371 j
+      THEN  373
+ BAD_TOKEN  379
+      ELSE  381
+ BAD_TOKEN  387
+    RPAREN  388
+ SEMICOLON  389
+        ID  398 print
+    LPAREN  403
+ BAD_TOKEN  405
+    RPAREN  406
+    RPAREN  407
+ SEMICOLON  408
+        ID  420 print
+    LPAREN  425
+ BAD_TOKEN  427
+    RPAREN  428
+    RPAREN  429
+        ID  438 function
+        ID  447 try
+    LPAREN  450
+        ID  451 c
+     COLON  452
+        ID  453 int
+    RPAREN  456
+        EQ  458
+    LPAREN  462
+        IF  528
+        ID  531 c
+        EQ  532
+        ID  533 N
+      THEN  541
+        ID  546 printboard
+    LPAREN  556
+    RPAREN  557
+      ELSE  565
+       FOR  570
+        ID  574 r
+    ASSIGN  576
+       INT  579 0
+        TO  581
+        ID  584 N
+     MINUS  585
+       INT  586 1
+        DO  593
+        IF  596
+        ID  599 row
+    LBRACK  602
+        ID  603 r
+    RBRACK  604
+        EQ  605
+       INT  606 0
+       AND  608
+        ID  610 diag1
+    LBRACK  615
+        ID  616 r
+      PLUS  617
+        ID  618 c
+    RBRACK  619
+        EQ  620
+       INT  621 0
+       AND  623
+        ID  625 diag2
+    LBRACK  630
+        ID  631 r
+      PLUS  632
+       INT  633 7
+     MINUS  634
+        ID  635 c
+    RBRACK  636
+        EQ  637
+       INT  638 0
+      THEN  653
+    LPAREN  658
+        ID  659 row
+    LBRACK  662
+        ID  663 r
+    RBRACK  664
+    ASSIGN  665
+       INT  667 1
+ SEMICOLON  668
+        ID  670 diag1
+    LBRACK  675
+        ID  676 r
+      PLUS  677
+        ID  678 c
+    RBRACK  679
+    ASSIGN  680
+       INT  682 1
+ SEMICOLON  683
+        ID  685 diag2
+    LBRACK  690
+        ID  691 r
+      PLUS  692
+       INT  693 7
+     MINUS  694
+        ID  695 c
+    RBRACK  696
+    ASSIGN  697
+       INT  699 1
+ SEMICOLON  700
+        ID  714 col
+    LBRACK  717
+        ID  718 c
+    RBRACK  719
+    ASSIGN  720
+        ID  722 r
+ SEMICOLON  723
+        ID  744 try
+    LPAREN  747
+        ID  748 c
+      PLUS  749
+       INT  750 1
+    RPAREN  751
+ SEMICOLON  752
+        ID  759 row
+    LBRACK  762
+        ID  763 r
+    RBRACK  764
+    ASSIGN  765
+       INT  767 0
+ SEMICOLON  768
+        ID  770 diag1
+    LBRACK  775
+        ID  776 r
+      PLUS  777
+        ID  778 c
+    RBRACK  779
+    ASSIGN  780
+       INT  782 0
+ SEMICOLON  783
+        ID  785 diag2
+    LBRACK  790
+        ID  791 r
+      PLUS  792
+       INT  793 7
+     MINUS  794
+        ID  795 c
+    RBRACK  796
+    ASSIGN  797
+       INT  799 0
+    RPAREN  800
+    RPAREN  805
+        ID  809 in
+        ID  812 try
+    LPAREN  815
+       INT  816 0
+    RPAREN  817
+       END  820

@@ -1,0 +1,33 @@
+       LET   43
+      TYPE   50
+        ID   55 rectype
+        EQ   63
+    LBRACE   65
+        ID   66 name
+     COLON   70
+        ID   71 string
+     COMMA   78
+        ID   80 id
+     COLON   82
+        ID   83 int
+    RBRACE   86
+       VAR   90
+        ID   94 rec1
+    ASSIGN   99
+        ID  102 rectype
+    LBRACE  110
+        ID  111 name
+        EQ  115
+ BAD_TOKEN  117
+     COMMA  118
+        ID  120 id
+        EQ  122
+       INT  123 0
+    RBRACE  124
+        ID  127 in
+        ID  132 rec1
+       DOT  136
+        ID  137 nam
+    ASSIGN  141
+ BAD_TOKEN  145
+       END  148

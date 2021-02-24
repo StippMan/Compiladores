@@ -1,0 +1,10 @@
+     WHILE   39
+    LPAREN   44
+       INT   45 10
+        GT   48
+       INT   50 5
+    RPAREN   51
+        DO   53
+       INT   56 5
+      PLUS   57
+       INT   58 6

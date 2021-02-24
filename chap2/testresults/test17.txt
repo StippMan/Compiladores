@@ -1,0 +1,34 @@
+       LET   60
+      TYPE   86
+        ID   91 tree
+        EQ   96
+    LBRACE   97
+        ID   98 key
+     COLON  101
+        ID  103 int
+     COMMA  106
+        ID  108 children
+     COLON  116
+        ID  118 treelist
+    RBRACE  126
+       VAR  129
+        ID  133 d
+     COLON  134
+        ID  135 int
+    ASSIGN  139
+       INT  141 0
+      TYPE  144
+        ID  149 treelist
+        EQ  158
+    LBRACE  160
+        ID  161 hd
+     COLON  163
+        ID  165 tree
+     COMMA  169
+        ID  171 tl
+     COLON  173
+        ID  175 treelist
+    RBRACE  183
+        ID  188 in
+        ID  193 d
+       END  196

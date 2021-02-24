@@ -1,0 +1,30 @@
+       LET  236
+        ID  242 function
+        ID  251 g
+    LPAREN  252
+        ID  253 a
+     COLON  254
+        ID  255 int
+    RPAREN  258
+     COLON  259
+        ID  260 int
+        EQ  264
+        ID  266 a
+      TYPE  270
+        ID  275 t
+        EQ  277
+        ID  279 int
+        ID  285 function
+        ID  294 g
+    LPAREN  295
+        ID  296 a
+     COLON  297
+        ID  298 int
+    RPAREN  301
+     COLON  302
+        ID  303 int
+        EQ  307
+        ID  309 a
+        ID  312 in
+       INT  317 0
+       END  320

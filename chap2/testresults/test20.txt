@@ -1,0 +1,13 @@
+     WHILE   39
+       INT   45 10
+        GT   48
+       INT   50 5
+        DO   52
+    LPAREN   55
+        ID   56 i
+      PLUS   57
+       INT   58 1
+ SEMICOLON   59
+    LPAREN   60
+    RPAREN   61
+    RPAREN   62

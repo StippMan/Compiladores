@@ -1,0 +1,10 @@
+       LET   36
+       VAR   43
+        ID   47 d
+    ASSIGN   48
+       INT   50 0
+        ID   53 in
+        ID   58 d
+       DOT   59
+        ID   60 f
+       END   64
