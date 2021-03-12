@@ -52,3 +52,4 @@ extern YYSTYPE yylval;
 # define GTEQ 301
 # define GOTO 302
 # define STRLIT 303
+# define LABEL 304

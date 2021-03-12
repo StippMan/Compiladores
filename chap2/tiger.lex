@@ -82,6 +82,7 @@ void adjust(void);
 "funtion"    	    {adjust(); return FUNCTION;}
 "end"    		    {adjust(); return END;}
 
+"label"				{adjust(); return LABEL;}
 "goto"    			{adjust(); return GOTO;}
 
 [0-9]+	 					{adjust(); yylval.ival=atoi(yytext); return INT;}
